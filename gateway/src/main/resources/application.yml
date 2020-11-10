@@ -4,7 +4,16 @@ server:
 spring:
   application:
     name: gateway-server  # 应用名称，在 Eureka 中作为 id 标识
-
+  cloud:
+    gateway:
+      routes:
+        # 路由 id 随便写
+        - id: info-server
+          uri: lb://info-server
+          # uri: http://127.0.0.1:8200
+          # 服务路径
+          predicates:
+            - Path=/info/**
 eureka:
   client:
     service-url:
